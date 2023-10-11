@@ -8,11 +8,11 @@ module.exports = {
 
 async function create(createdResource) {
     const created = await db("resources")
-    .insert(createdResource)
+        .insert(createdResource)
     return await db("resources").where("resource_id", created[0]).first();
 }
 
 async function findAll() {
-    const resourceData = await db('resources'); 
+    const resourceData = await db('resources');
     return resourceData;
 }

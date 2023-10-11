@@ -8,11 +8,11 @@ module.exports = {
 
 async function findAll() {
     const projectData = await db("projects");
-    const returnValue = projectData.map(n=> {
+    const returnValue = projectData.map(n => {
         if (!n.project_completed) {
-            return {...n, project_completed : false}
+            return { ...n, project_completed: false }
         } else if (n.project_completed) {
-            return {...n, project_completed : true}
+            return { ...n, project_completed: true }
         } else {
             return n;
         }
@@ -22,12 +22,12 @@ async function findAll() {
 
 async function create(createdProject) {
     const created = await db("projects").insert(createdProject);
-    const inter = await db("projects").where("project_id",created[0]); 
-    const returnValue = inter.map(n=> {
+    const inter = await db("projects").where("project_id", created[0]);
+    const returnValue = inter.map(n => {
         if (!n.project_completed) {
-            return {...n, project_completed : false}
+            return { ...n, project_completed: false }
         } else if (n.project_completed) {
-            return {...n, project_completed : true}
+            return { ...n, project_completed: true }
         } else {
             return n;
         }
