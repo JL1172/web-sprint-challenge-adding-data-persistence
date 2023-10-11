@@ -10,7 +10,7 @@ async function validatePostBody(req,res,next) {
         if (!resource_name || typeof resource_name !== "string" ) {
             next({status : 422, message : "need resource name for post"})
         } else {
-            if (typeof req.body.resource_description !== "string") {
+            if (req.body.resource_description && typeof req.body.resource_description !== "string") {
                 next({status : 422, message : "description must be string"})
             } else {
                 next();

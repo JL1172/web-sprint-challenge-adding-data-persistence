@@ -12,9 +12,9 @@ server.use(express.json())
 server.use(morgan("dev")); 
 
 //routes
-server.use("/api/project",ProjectRouter);
-server.use("/api/resource",ResourceRouter);
-server.use("/api/task",TaskRouter);
+server.use("/api/projects",ProjectRouter);
+server.use("/api/resources",ResourceRouter);
+server.use("/api/tasks",TaskRouter);
 //routes
 
 module.exports = server; 
