@@ -7,7 +7,8 @@ module.exports = {
 }
 
 async function findAll() {
-    const result = await db("tasks");
+    const result = await db("tasks as t")
+    .join("projects as p","t.project_id","p.project_id");
     const returnResult = result.map(n => {
         if (!n.task_completed) {
             return { ...n, task_completed: false }
@@ -20,6 +21,14 @@ async function findAll() {
     return returnResult;
 }
 
+/*
+select 
+p.project_name,
+p.project_description
+from tasks as t
+join projects as p
+on t.project_id=p.project_id;
+*/
 
 async function create(createdTask) {
     const new_task_id = await db("tasks").insert(createdTask);
@@ -33,5 +42,5 @@ async function create(createdTask) {
             return n
         }
     })
-    return returnValue;
+    return returnValue[0];
 }
